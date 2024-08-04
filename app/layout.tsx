@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SideBar from "@/components/SideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,11 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" />
         <script src="https://kit.fontawesome.com/f1ed3a95ea.js" crossOrigin="anonymous" defer></script>
       </head>
-      <body className="text-sm lg:text-lg">{children}</body>
+      <body className="text-sm lg:text-lg">
+          <SideBar>
+            {children}
+          </SideBar>
+      </body>
     </html>
   );
 }
