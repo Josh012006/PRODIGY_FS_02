@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@types/axios": "^0.9.36",
     "@types/mongoose": "^5.11.96",
     "axios": "^1.7.3",
