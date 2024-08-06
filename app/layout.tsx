@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" />
         <script src="https://kit.fontawesome.com/f1ed3a95ea.js" crossOrigin="anonymous" defer></script>
       </head>
-      <body className="text-sm lg:text-lg">
+      <body className="text-sm lg:text-lg"  style={{backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('/bg.jpg')", backgroundPosition: "center", backgroundRepeat: "repeat"}}>
           <SideBar>
             {children}
           </SideBar>

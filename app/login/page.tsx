@@ -59,14 +59,14 @@ function LoginPage() {
             <h1 className="text-center font-bold text-xl lg:text-3xl mt-28">Login</h1>
             {error && <ErrorAlert>{error}</ErrorAlert>}
             {loading && <div className="mx-auto flex my-5">
-                <Loader color="#004" size={40} />
+                <Loader color="#028585" size={40} />
             </div>}
-            <form id="login" className="flex flex-col w-11/12 lg:w-1/4 mx-auto my-10" onSubmit = {handleLogin}>
+            <form id="login" className="flex flex-col w-11/12 lg:w-1/4 mx-auto my-10 bg-soft-mint rounded-lg p-6" onSubmit = {handleLogin}>
                 <label htmlFor="email" className="text-sm lg:text-lg my-2">Email</label>
                 <input type="email" name="email" id="email" className="p-2 border border-gray-300 rounded-lg mb-3" required />
                 <label htmlFor="password" className="text-sm lg:text-lg my-2">Password</label>
                 <input type="password" name="password" id="password" className="p-2 border border-gray-300 rounded-lg mb-3" required />
-                <button type="submit" form="login" className="bg-blue-950 hover:bg-blue-900 text-white p-2 rounded-lg my-5">Login</button>
+                <button type="submit" form="login" className="bg-teal-green hover:bg-sea-green text-white p-2 rounded-lg my-5">Login</button>
             </form>
         </div>
     );
