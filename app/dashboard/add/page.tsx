@@ -27,7 +27,13 @@ import "dayjs/locale/fr";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { set } from 'mongoose'
+
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
+
+
+import axios from 'axios';
 
 
 
@@ -48,17 +54,33 @@ function AddPage() {
         try {
 
             e.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+
             setLoading(true);
             setError('');
             
             const formData = new FormData(e.target as HTMLFormElement);
 
-            formData.append('dateOfBirth', JSON.stringify(dateOfBirth.toDate()));
-            formData.append('startDate', JSON.stringify(startDate.toDate()));
+            formData.append('dateOfBirth', dateOfBirth?.format("DD/MM/YYYY"));
+            formData.append('startDate', startDate?.format("DD/MM/YYYY"));
+            formData.append('file', file[0]);
 
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/employees/add`, formData, { validateStatus: (status) => status >= 200 });
 
+            if(response.status === 201) {
+                console.log("Employee added successfully");
+                setLoading(false);
+                window.location.href = '/';
+            }
 
-
+            else if(response.status === 500) {
+                throw Error("An error occurred. Please try again!");
+            }
 
         } catch (error) {
             console.log(error);
@@ -72,7 +94,7 @@ function AddPage() {
             <h1 className="text-center font-bold text-xl lg:text-3xl mt-5 lg:mt-20">Add an employee</h1>
             {error && <ErrorAlert>{error}</ErrorAlert>}
             {loading && <div className="mx-auto flex my-5">
-                <Loader color="#004" size={40} />
+                <Loader color="#028585" size={40} />
             </div>}
             <form onSubmit={handleSubmit} className="flex flex-col p-3">
                 <div className="flex flex-col px-4 w-11/12 lg:w-2/4 mx-auto">
@@ -108,13 +130,13 @@ function AddPage() {
                         <input type="tel" id="phone" name="phone" className="border-2 rounded-md border-black p-3" placeholder="Employee's phone number" />
                     </div>
                     <div className='flex flex-col px-4'>
-                        <p className="my-3 text-center"><span className="font-bold">Date of birth:</span> {dateOfBirth?.toDate()?.getUTCDate() + '/' + dateOfBirth?.toDate().getMonth() + '/' + dateOfBirth?.toDate().getFullYear()}</p>
+                        <p className="my-3 text-center"><span className="font-bold">Date of birth:</span> {dateOfBirth?.format("DD/MM/YYYY")}</p>
                         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
                             <DateCalendar className='bg-white rounded-lg' value={dateOfBirth} onChange={(newValue) => setDateOfBirth(newValue)} maxDate={dayjs()} />
                         </LocalizationProvider>
                     </div>
                     <div className='flex flex-col px-4'>
-                        <p className="my-3 text-center"><span className="font-bold">Start Date:</span> {startDate?.toDate()?.getUTCDate() + '/' + startDate?.toDate().getMonth() + '/' + startDate?.toDate().getFullYear()}</p>
+                        <p className="my-3 text-center"><span className="font-bold">Start Date:</span> {startDate?.format("DD/MM/YYYY")}</p>
                         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
                             <DateCalendar className='bg-white rounded-lg' value={startDate} onChange={(newValue) => setStartDate(newValue)} />
                         </LocalizationProvider>
@@ -139,7 +161,7 @@ function AddPage() {
                         <input type="text" id="contract" name="contract" className="border-2 rounded-md border-black p-3" placeholder="CDI for example" />
                     </div>
                     <div className="flex flex-col px-4">
-                        <label htmlFor="salary" className="font-bold my-3">Salary</label>
+                        <label htmlFor="salary" className="font-bold my-3">Salary in dollar US</label>
                         <input type="number" id="salary" name="salary" className="border-2 rounded-md border-black p-3" placeholder="Employee's salary" />
                     </div>
                     <div className="flex flex-col px-4">
