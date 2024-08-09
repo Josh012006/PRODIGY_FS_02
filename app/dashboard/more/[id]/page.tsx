@@ -20,6 +20,7 @@ function DetailsPage() {
     const [employee, setEmployee] = useState<Employee | null>(null);
 
     const [loading, setLoading] = useState(true);
+    const [loading1, setLoading1] = useState(false);
 
     useEffect(() => {
         async function fetchEmployee() {
@@ -44,29 +45,35 @@ function DetailsPage() {
 
             } catch (error) {
                 console.log("An error occurred while fetching employee's info!");
-                window.location.reload();
+                setLoading(false);
             }
         }
 
         fetchEmployee();
-    }, []);
+    }, [id]);
 
     const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 
 
     const handleUpdate = () => {
-        // ! need to create this page
-        window.location.href = `/dashboard/more/${id}/update`;
+        window.location.href = `/dashboard/more/update/${id}`;
     }
 
     const handleDeletion = async () => {
         try {
-            // ! need to write the route and the loader
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+
+            setLoading1(true);
+
             const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/employees/delete/${id}`, { validateStatus: (status) => status >=200 });
 
             if (response.status === 200) {
                 console.log('Employee deleted successfully!');
+                setLoading1(false);
                 window.location.href = "/";
             }
             else {
@@ -74,6 +81,7 @@ function DetailsPage() {
             }
 
         } catch (error) {
+            setLoading1(false);
             console.log("An error occurred while deleting employee!");
             window.location.reload();
         }
@@ -82,12 +90,15 @@ function DetailsPage() {
 
     return (
         <div>
-            <h1 className="text-center font-bold text-xl lg:text-3xl mt-28 mb-10">Details</h1>
+            <h1 className="text-center font-bold text-xl lg:text-3xl mt-10 lg:mt-28 mb-10">Details</h1>
             {loading && <div className="mx-auto flex my-5">
                 <Loader color="#028585" size={40} />
             </div>}
-            <h2 className="font-bold my-3 text-center text-xl lg:text-2xl">Profile picture</h2>
-            {employee && <><Image src={`/employees/${employee?.picture}`} alt="Employee's identity" width={300} height={300} className="mx-auto my-10 rounded-lg" />
+            {!loading && !employee && <div className="text-center my-10 italic">
+                No such employee. Please try again.
+            </div>}
+            {employee && <><h2 className="font-bold my-3 text-center text-xl lg:text-2xl">Profile picture</h2>
+            {employee && <><Image src={`/employees/${employee?.picture}`} alt="Employee's identity" width={300} height={300} className="mx-auto my-10 rounded-lg border-2 border-black" />
             <h2 className="font-bold my-3 text-center text-xl lg:text-2xl">Personal information</h2>
             <div className="my-5 grid grid-cols-1 lg:grid-cols-2 px-6">
                 <p><span className="font-bold">Name: </span>{employee?.name}</p>
@@ -111,10 +122,13 @@ function DetailsPage() {
                 <p><span className="font-bold">Bank: </span>{employee?.bank}</p>
                 <p><span className="font-bold">Education level: </span>{employee?.educationLevel}</p>
             </div></>}
-            <div className="flex flex-col lg:flex-row">
-                <button type="button" className="bg-dark-teal-green text-white p-2 rounded-md w-32" onClick={handleUpdate}>Modify</button>
-                <button type="button" className="bg-dark-teal-green text-white p-2 rounded-md w-32" onClick={handleDeletion}>Delete</button>
-            </div>
+            <div className="flex flex-col lg:flex-row items-center justify-center">
+                <button type="button" className="bg-dark-teal-green hover:bg-sea-green text-white p-2 rounded-md w-32 my-5 lg:mx-16" onClick={handleUpdate}>Modify</button>
+                <button type="button" className="bg-dark-teal-green hover:bg-sea-green text-white p-2 rounded-md w-32 my-5 lg:mx-16" onClick={handleDeletion}>Delete</button>
+            </div></>}
+            {loading1 && <div className="mx-auto flex my-5">
+                <Loader color="#028585" size={40} />
+            </div>}
         </div>
     );
 }
