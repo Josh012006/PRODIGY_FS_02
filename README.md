@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Preview
+<img alt="preview1" src="public/preview1.png" /> 
+<img alt="preview2" src="public/preview2.png" /> 
 
-## Getting Started
+## About the project
+This is a secure employee management system done using Next.js and MongoDB. For the style I used TailwindCSS. 
 
-First, run the development server:
+This project helps display my understanding of MCV organization and my ability to use Next.js to build beautiful and fast working web applications.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How it works
+First the admin or the user must be already registered in the database with it's email and password. When he successfully connects, he has access to an interface where he can see the list of employees, add a new employee with their info, modify an employee's info or even delete the ones that are no longer needed.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The interface is user-friendly and also responsive(it works also well on small screens). The security of the app is tight as the credentials are deleted every three hours after any login to the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to start
+There are certain essentials steps you must follow after **cloning the project**, in other to be able to use the app properly.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+First you need to **create a database and add an admin with an email and a password**.
 
-## Learn More
+Secondly, you must **fill the .env file** with the good environnement variables:
+MONGO_URI=
+NEXT_PUBLIC_API_URL=
 
-To learn more about Next.js, take a look at the following resources:
+Thirdly, you run **npm run dev**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Hope you enjoy
+Have fun, leave a star if you like please and any contribution or improvement is welcome.
