@@ -82,7 +82,7 @@ function DetailsPage() {
 
         } catch (error) {
             setLoading1(false);
-            console.log("An error occurred while deleting employee!");
+            console.log("An error occurred while deleting employee! ", error);
             window.location.reload();
         }
     }

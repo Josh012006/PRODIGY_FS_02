@@ -47,8 +47,6 @@ function AddPage() {
     const [dateOfBirth, setDateOfBirth] = useState<any>(dayjs());
     const [startDate, setStartDate] = useState<any>(dayjs());
 
-    const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         try {
@@ -149,11 +147,11 @@ function AddPage() {
                         <input type="text" id="SSN" name="SSN" className="border-2 rounded-md border-black p-3" placeholder="0123456789" />
                     </div>
                     <div className="flex flex-col px-4">
-                        <label htmlFor="position" className="font-bold my-3">Employee's position</label>
+                        <label htmlFor="position" className="font-bold my-3">Employee&apos;s position</label>
                         <input type="text" id="position" name="position" className="border-2 rounded-md border-black p-3" placeholder="Employee's position" />
                     </div>
                     <div className="flex flex-col px-4">
-                        <label htmlFor="department" className="font-bold my-3">Employee's department</label>
+                        <label htmlFor="department" className="font-bold my-3">Employee&apos;s department</label>
                         <input type="text" id="department" name="department" className="border-2 rounded-md border-black p-3" placeholder="Employee's department" />
                     </div>
                     <div className="flex flex-col px-4">
