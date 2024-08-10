@@ -6,6 +6,11 @@ import employeeModel from "@/server/models/employeeModel";
 import dayjs from 'dayjs';
 import connectDB from "@/server/config/connectDB";
 
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
+
+
 
 
 const UPLOAD_DIR = path.resolve("public/employees");
@@ -18,8 +23,8 @@ export async function POST (req: NextRequest) {
         const formData = await req.formData();
         const body = Object.fromEntries(formData);
 
-        const dateOfBirth: Date = dayjs(body.dateOfBirth as string, 'DD/MM/YYYY').toDate();
-        const startDate: Date = dayjs(body.startDate as string, 'DD/MM/YYYY').toDate();
+        const dateOfBirth: Date = await dayjs(body.dateOfBirth as string, 'DD/MM/YYYY').toDate();
+        const startDate: Date = await dayjs(body.startDate as string, 'DD/MM/YYYY').toDate();
 
         const file = (body.file as Blob) || null;
 

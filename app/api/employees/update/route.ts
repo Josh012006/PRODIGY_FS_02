@@ -6,6 +6,11 @@ import employeeModel from "@/server/models/employeeModel";
 import dayjs from 'dayjs';
 import connectDB from "@/server/config/connectDB";
 
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
+
+
 
 
 const UPLOAD_DIR = path.resolve("public/employees");

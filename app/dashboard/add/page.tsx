@@ -68,6 +68,8 @@ function AddPage() {
             formData.append('startDate', startDate?.format("DD/MM/YYYY"));
             formData.append('file', file[0]);
 
+            console.log(startDate?.format("DD/MM/YYYY"));
+
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/employees/add`, formData, { validateStatus: (status) => status >= 200 });
 
             if(response.status === 201) {

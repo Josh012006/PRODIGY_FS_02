@@ -63,7 +63,7 @@ function DetailsPage() {
     const handleDeletion = async () => {
         try {
             window.scrollTo({
-                top: document.body.scrollHeight,
+                top: 300,
                 behavior: 'smooth'
             });
 
