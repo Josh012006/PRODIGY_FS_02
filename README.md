@@ -3,7 +3,7 @@
 <img alt="preview2" src="public/preview2.png" /> 
 
 ## About the project
-This is a secure employee management system done using Next.js and MongoDB. For the style I used TailwindCSS. 
+This is a secure employee management system done using Next.js, Typescript and MongoDB. For the style I used TailwindCSS. 
 
 This project helps display my understanding of MVC organization and my ability to use Next.js to build beautiful and fast working web applications.
 
