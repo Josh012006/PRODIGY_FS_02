@@ -25,8 +25,8 @@ function SideBar ({children} : {children: ReactNode}) {
                     <h1 className="font-bold text-center text-xl lg:text-2xl p-3 lg:my-6">My EMS</h1>
                     <div className="w-11/12 mx-auto border-2 border-white"></div>
                     <nav className="flex flex-col text-xl py-5">
-                        <Link href="/" className="p-3 hover:bg-teal-green" onClick={() => {setSidebar("hidden")}}>List of employees</Link>
-                        <Link href="/dashboard/add" className="p-3 hover:bg-teal-green" onClick={() => {setSidebar("hidden")}}>Add employee</Link>
+                        <Link href="/" className="p-3 hover:bg-teal-green" onClick={() => {setSidebar("hidden")}}><i className="fa-solid fa-address-book text-white" aria-hidden="true"></i> &nbsp;&nbsp;List of employees</Link>
+                        <Link href="/dashboard/add" className="p-3 hover:bg-teal-green" onClick={() => {setSidebar("hidden")}}><i className="fa-solid fa-user-plus text-white" aria-hidden="true"></i> &nbsp;&nbsp;Add employee</Link>
                     </nav>
                 </div>
                 <div className="col-span-5 lg:col-span-4">

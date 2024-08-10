@@ -66,6 +66,7 @@ function HomePage () {
           <tr className="bg-medium-aquamarine border-y-2 border-black">
             <th className="py-2">Name</th>
             <th className="py-2">Email</th>
+            <th className="py-2">Depart.</th>
             <th className="py-2"></th>
           </tr>
         </thead>
@@ -73,7 +74,8 @@ function HomePage () {
           {employees.map((employee) => (
             <tr key={employee._id} className="border-y-2 border-black">
               <td className="py-2">{employee.name}</td>
-              <td className="py-2">{employee.email}</td>
+              <td className="py-2 whitespace-normal">{employee.email}</td>
+              <td className="py-2">{employee.department}</td>
               <td className="py-2">
                 <Link href={`/dashboard/more/${employee._id}`} className="text-white bg-dark-teal-green hover:bg-sea-green p-2 rounded-md">More</Link>
               </td>
