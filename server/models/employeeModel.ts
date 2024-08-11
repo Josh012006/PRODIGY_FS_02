@@ -19,7 +19,10 @@ const employeeSchema = new mongoose.Schema({
     contractType: String,
     salary: Number,
     workTime: String,
-    employeeNumber: String,
+    employeeNumber: {
+        type: String,
+        unique: true,
+    },
     bankAccount: String,
     bank: String,
     educationLevel: String,
